@@ -1,45 +1,75 @@
-{% extends 'base.html' %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wishlist</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+    <style>
+        h1.title {
+            text-align: center;
+            color: white;
+            padding-top: 20px;
+        }
 
-{% block meta %}
-<title>Login</title>
-{% endblock meta %}
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: rgb(53, 83, 83);
+        }
 
-{% block content %}
+        li {
+            float: left;
+        }
 
-<div class = "login">
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
 
-    <h1>Login</h1>
+        li a:hover {
+            background-color: rgb(71, 121, 121);
+        }
+    </style>
+  </head>
+
+  <body style="background-color: rgb(109, 146, 146);">
+    <ul>
+        <li><a style="color: white; font-weight:bold">Feru Pratama Kartajaya</a></li>
+    </ul>
+    
+    <h1 class="title">Login</h1>
 
     <form method="POST" action="">
         {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
+        <div class="container my-4">
+            <div class="row">
+                <div class="col" style="text-align: right; color: white;">Username: </div>
+                <div class="col"><input type="text" name="username" placeholder="Username" maxlength="16"></div>
+            </div>
                     
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
+            <div class="row">
+                <div class="col" style="text-align: right; color: white;">Password: </div>
+                <div class="col"><input type="password" name="password" placeholder="Password" maxlength="16"></div>
+            </div>
 
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
+            <div class="col my-3" style="text-align: center;"><input class="btn login_btn" type="submit" value="Login" style="background-color: rgb(53, 83, 83); color:white"></div>
+        </div>
     </form>
 
     {% if messages %}
-        <ul>
             {% for message in messages %}
-                <li>{{ message }}</li>
+                <p style="text-align: center;">{{ message }}</p>
             {% endfor %}
-        </ul>
     {% endif %}     
         
-    Belum mempunyai akun? <a href="{% url 'wishlist:register' %}">Buat Akun</a>
+    <p style="text-align: center; color: white;">Belum mempunyai akun? <a href="{% url 'wishlist:register' %}">Buat Akun</a></p>
 
-</div>
-
-{% endblock content %}
+  </body>
+  
+</html>
