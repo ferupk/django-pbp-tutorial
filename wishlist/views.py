@@ -55,6 +55,14 @@ def show_wishlist(request):
     }
     return render(request, "wishlist.html", context)
 
+@login_required(login_url='/wishlist/login/')
+def show_wishlist_ajax(request):
+    context = {
+        'nama': 'Feru Pratama Kartajaya',
+        'last_login': request.COOKIES['last_login'],
+    }
+    return render(request, "wishlist_ajax.html", context)
+
 def show_wishlist_xml(request):
     data = BarangWishlist.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
@@ -70,3 +78,6 @@ def show_wishlist_xml_by_id(request, id):
 def show_wishlist_json_by_id(request, id):
     data = BarangWishlist.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def submit_data(request):
+    return render(request, "wishlist_ajax.html")
